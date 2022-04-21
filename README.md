@@ -6,7 +6,6 @@
 
 - CoreData
 - Alamofire
-- AlamofireImage
 - SwiftyJson
 - Web services
 
