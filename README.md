@@ -7,7 +7,9 @@
 - CoreData
 - Alamofire
 - SwiftyJson
+- SDWebImageSVGCoder
 - Web services
+- NotificationCenter
 
 
-![Artboard – 2](https://user-images.githubusercontent.com/45628483/162954009-87c102fb-465a-413e-a2d9-886ed2f07ed9.png)
+![Web 1920 – 1](https://user-images.githubusercontent.com/45628483/165949600-e07430cc-e44a-4723-ad1a-cbfaff2eda30.png)
