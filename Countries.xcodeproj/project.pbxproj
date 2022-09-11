@@ -67,6 +67,42 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DF4D095C28CDFF00005E1045 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF6156DC2800EC9D00F230C6 /* Model.swift */,
+				DF6C949F280390AC00FD0C1C /* DetailsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DF4D095E28CDFF74005E1045 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DFE75C0128007960004DCE3D /* HomeViewController.swift */,
+				DF00AE7E28024B8300B6A916 /* SavedViewController.swift */,
+				DF6C949D280380C500FD0C1C /* DetailsVC.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DF4D095F28CDFFEC005E1045 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DFE75BF72800661C004DCE3D /* NetworkManager.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		DF4D096028CE0005005E1045 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DFE75BFF28006E3B004DCE3D /* HomeCell.swift */,
+				DF00AE8028024FCC00B6A916 /* SavedCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		DFE75BD428006382004DCE3D = {
 			isa = PBXGroup;
 			children = (
@@ -88,16 +124,12 @@
 		DFE75BDF28006382004DCE3D /* Countries */ = {
 			isa = PBXGroup;
 			children = (
+				DF4D096028CE0005005E1045 /* Cell */,
+				DF4D095F28CDFFEC005E1045 /* Service */,
+				DF4D095E28CDFF74005E1045 /* ViewController */,
+				DF4D095C28CDFF00005E1045 /* Model */,
 				DFE75BE028006382004DCE3D /* AppDelegate.swift */,
 				DFE75BE228006382004DCE3D /* SceneDelegate.swift */,
-				DFE75C0128007960004DCE3D /* HomeViewController.swift */,
-				DF00AE7E28024B8300B6A916 /* SavedViewController.swift */,
-				DFE75BF72800661C004DCE3D /* NetworkManager.swift */,
-				DFE75BFF28006E3B004DCE3D /* HomeCell.swift */,
-				DF00AE8028024FCC00B6A916 /* SavedCell.swift */,
-				DF6156DC2800EC9D00F230C6 /* Model.swift */,
-				DF6C949F280390AC00FD0C1C /* DetailsModel.swift */,
-				DF6C949D280380C500FD0C1C /* DetailsVC.swift */,
 				DFE75BE628006382004DCE3D /* Main.storyboard */,
 				DFE75BEC28006382004DCE3D /* Assets.xcassets */,
 				DFE75BEE28006382004DCE3D /* LaunchScreen.storyboard */,

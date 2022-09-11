@@ -22,10 +22,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        
         
         getData()
         
@@ -48,20 +46,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                       DispatchQueue.main.async {
                           self.tableView.reloadData()
                       }
-                      
-                                          
-                                      
                       case .failure(_): break
                   }
                   
               }
         }
             
-
-
-    
-
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countryArray.count
     }

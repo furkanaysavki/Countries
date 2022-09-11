@@ -13,9 +13,7 @@ class HomeCell: UITableViewCell, UINavigationControllerDelegate {
     
    
     @IBOutlet weak var countryName: UILabel!
-    
     @IBOutlet weak var countryView: UIView!
-    
     @IBOutlet weak var codeLabel: UILabel!
     
     override func awakeFromNib() {

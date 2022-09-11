@@ -23,10 +23,8 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        
         getName()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -68,9 +66,6 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.countryLabel.text = nameArray[indexPath.row]
         cell.codeLabel.text = codeArray[indexPath.row]
         cell.savedCountryView.layer.cornerRadius = cell.savedCountryView.frame.height / 2
-       
-        
-        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -90,17 +85,13 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
 }
     
-       
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+       func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == .delete {
                 
                
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 let context = appDelegate.persistentContainer.viewContext
-                
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Countries")
-                
                 let nameString = nameArray[indexPath.row]
                 let codeString = codeArray[indexPath.row]
                 
@@ -135,25 +126,13 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                     }
                                     
                                     break
-                                    
+                                    }
                                 }
-                                
                             }
-                            
-                            
                         }
-                        
-                        
-                    }
                 } catch {
                     print("error")
                 }
-                
-                
-                
-                
-    }
+                }
         }
-        
-        
-}
+        }

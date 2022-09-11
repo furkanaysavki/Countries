@@ -13,12 +13,8 @@ class SavedCell: UITableViewCell {
 
    
     @IBOutlet weak var countryLabel: UILabel!
-    
     @IBOutlet weak var favouriteButton: UIImageView!
-    
-    
     @IBOutlet weak var savedCountryView: UIView!
-    
     @IBOutlet weak var codeLabel: UILabel!
     
     override func awakeFromNib() {
