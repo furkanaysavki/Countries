@@ -10,6 +10,12 @@ import Alamofire
 import SwiftyJSON
 
 
+
+import Foundation
+import Alamofire
+import SwiftyJSON
+
+
 class NetworkManager {
     
     static let instance = NetworkManager()

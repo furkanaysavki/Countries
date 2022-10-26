@@ -9,11 +9,9 @@ import Foundation
 
 
 struct DetailsModel: Codable {
-    let data: DataClass
+    let data : Details
 }
-
-
-struct DataClass: Codable {
+struct Details: Codable {
     let capital, code, callingCode: String
     let flagImageURI: String
     let name: String

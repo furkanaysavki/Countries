@@ -12,20 +12,19 @@ import SDWebImageSVGCoder
 
 
 
-class DetailsVC: UIViewController {
+final class DetailsVC: UIViewController {
     
     
-    var selectedCode = ""
     var vikiData  = ""
     var countryName = ""
-    
+    var countryID = ""
+    private var countryDetail: DetailsModel?
     @IBOutlet weak var flagImage: UIImageView!
     @IBOutlet weak var countryCode: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    
+    @IBOutlet weak var saveButton: UIButton!
     override func viewDidLoad()  {
         super.viewDidLoad()
-        self.countryCode.text = "Country Code : \(self.selectedCode)"
        
            getDetails()
         
@@ -36,19 +35,17 @@ class DetailsVC: UIViewController {
         let group = DispatchGroup()
         group.enter()
         
-            NetworkManager.instance.fetch(HTTPMethod.get, url: "https://wft-geo-db.p.rapidapi.com/v1/geo/countries/\(selectedCode)" , requestModel: nil, model: DetailsModel.self  ) { response in
+            NetworkManager.instance.fetch(HTTPMethod.get, url: "https://wft-geo-db.p.rapidapi.com/v1/geo/countries/\(countryID)" , requestModel: nil, model: DetailsModel.self  ) { response in
                 
-                 
-              switch(response)
-              {
+                switch(response)
+                 {
                   case .success(let model):
-                  
-                   let detailsModel = model as! DetailsModel
+                  let detailsModel = model as! DetailsModel
                     print("JSON RESPONSE MODEL : \(String(describing: detailsModel))")
                   
                   self.vikiData = String(detailsModel.data.wikiDataID)
                   self.countryName = String(detailsModel.data.name)
-                 
+                  self.countryCode.text = String("Country Code : \(detailsModel.data.code)")
                   group.leave()
               
                   case .failure(_): break
@@ -64,17 +61,10 @@ class DetailsVC: UIViewController {
                              if image != nil {
                                  print("SVGView SVG load success")
                              }
-                             group.leave()
-                
-                    }
-                
+                group.leave()
                 }
-        
-            
-    }
-    
-    
-
+                }
+        }
     
     @IBAction func informationButton(_ sender: Any) {
         if let url = URL(string: "https://www.wikidata.org/wiki/\(self.vikiData)") {
@@ -84,21 +74,21 @@ class DetailsVC: UIViewController {
     }
     
     @IBAction func favouriteClicked(_ sender: Any) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let newCountry = NSEntityDescription.insertNewObject(forEntityName: "Countries", into: context)
-        newCountry.setValue(self.countryName, forKey: "name")
-        newCountry.setValue("selectedCode.self", forKey: "code")
-        
-       
-        do{
-            try context.save()
-            print("success")
-        } catch {
-            print("error")
+        CoreDataManager.shared.checkIsFavourite(with: countryID ) { result in
+            switch result {
+            case .success(let bool):
+                if bool {
+                    CoreDataManager.shared.deleteMovie(with: self.countryID) { error in
+                        print(error)
+                    }
+                    self.saveButton.setImage(UIImage(systemName: "star"), for: .normal)
+                } else {
+                    CoreDataManager.shared.createFavouriteCountry(with: Country(code: (self.countryDetail?.data.code)!, name: (self.countryDetail?.data.name)!))
+                    self.saveButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                }
+            case .failure(let error):
+                print(error)
+            }
         }
-        
-        NotificationCenter.default.post(name: NSNotification.Name("newData"), object: nil)
-        
     }
 }
