@@ -9,7 +9,7 @@
 - SwiftyJson
 - SDWebImageSVGCoder
 - Web services
-- NotificationCenter
+
 
 
 ![Web 1920 – 1](https://user-images.githubusercontent.com/45628483/165949600-e07430cc-e44a-4723-ad1a-cbfaff2eda30.png)
