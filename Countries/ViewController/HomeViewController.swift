@@ -8,9 +8,8 @@
 import UIKit
 import Alamofire
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController {
    
-    
     private var countryArray : [Country] = []
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,8 +17,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: CustomTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CustomTableViewCell.identifier)
-        
+        tableView.register(UINib(nibName: HomeTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: HomeTableViewCell.identifier)
+       
         getData()
         
     }
@@ -45,24 +44,44 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                   
               }
         }
-            
-    func numberOfSections(in tableView: UITableView) -> Int {
-        countryArray.count
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.countryName.text = countryArray[indexPath.row].name
-        cell.configureCountryComponents(model: countryArray[indexPath.section])
-        return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = DetailsVC.instantiate()
-        detailVC.countryID = countryArray[indexPath.section].code
-        navigationController?.pushViewController(detailVC, animated: true)
-    }
+    
 }
+  extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
+      
+     func numberOfSections(in tableView: UITableView) -> Int {
+     countryArray.count
+     }
+      
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         1
+     }
+      
+     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+     Constant.rowHeight
+     }
+      
+     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+      let spaceView = UIView()
+      spaceView.backgroundColor = view.backgroundColor
+      return spaceView
+     }
+      
+     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+      Constant.headerHeightInSection
+     }
+      
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as? HomeTableViewCell else {
+          return UITableViewCell()
+     }
+       cell.countryID = countryArray[indexPath.section].code
+       cell.configureCountryComponents(model: countryArray[indexPath.section])
+       return cell
+     }
+      
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     let detailVC = DetailsVC.instantiate()
+     detailVC.countryID = countryArray[indexPath.section].code
+     navigationController?.pushViewController(detailVC, animated: true)
+     }
+    }
